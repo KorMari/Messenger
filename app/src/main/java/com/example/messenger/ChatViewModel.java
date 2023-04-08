@@ -99,31 +99,31 @@ public class ChatViewModel extends ViewModel {
     public void sendMessage(Message message) {
         messagesReference
                 .child(message.getSenderId())
-//                .child(message.getReceiverId())
+                .child(message.getReceiverId())
                 .push()
-                .setValue(messages)
+                .setValue(message)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d("ChatViewModel", "messagesReference get Sender in dataBase");
-//                        messagesReference
-//                                .child(message.getReceiverId())
-//                                .child(message.getSenderId())
-//                                .push()
-//                                .setValue(messages)
-//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void unused) {
-//                                        Log.d("ChatViewModel", "messagesSend is true");
-//
-//                                        messageSend.setValue(true);
-//                                    }
-//                                }).addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        error.setValue(e.getMessage());
-//                                    }
-//                                });
+                        messagesReference
+                                .child(message.getReceiverId())
+                                .child(message.getSenderId())
+                                .push()
+                                .setValue(message)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d("ChatViewModel", "messagesSend is true");
+
+                                        messageSend.setValue(true);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        error.setValue(e.getMessage());
+                                    }
+                                });
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
