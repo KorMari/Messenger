@@ -42,7 +42,7 @@ setupClickListeners();
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-                    Intent intent = UsersActivity.newIntent(LoginActivity.this);
+                    Intent intent = UsersActivity.newIntent(LoginActivity.this, firebaseUser.getUid());
                     startActivity(intent);
                     finish();
                 }
